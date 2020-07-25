@@ -48,18 +48,18 @@ public class BudgetPlan {
     }
 
     private long getBudgetDaysCount(LocalDate date) {
-        Optional<Budget> budget = getBudgetContaining(date);
-        return budget.map(value -> value.getMonth().lengthOfMonth()).orElse(1);
+        Budget budget = getBudgetContaining(date);
+        return budget.getMonth().lengthOfMonth();
     }
 
-    private Optional<Budget> getBudgetContaining(LocalDate date){
+    private Budget getBudgetContaining(LocalDate date){
         List<Budget> budgets = repo.findAll();
-        return budgets.stream().filter(budget -> budget.getMonth().atDay(1).equals(date.withDayOfMonth(1))).findFirst();
+        return budgets.stream().filter(budget -> budget.getMonth().atDay(1).equals(date.withDayOfMonth(1))).findFirst().orElse(new Budget(YearMonth.from(date), 0));
     }
 
     private long getBudgetAmount(LocalDate date) {
-        Optional<Budget> budget = getBudgetContaining(date);
-        return budget.map(Budget::getAmount).orElse(0L);
+        Budget budget = getBudgetContaining(date);
+        return budget.getAmount();
     }
 
     public List<Budget> getBudgetsBetween(LocalDate startDate, LocalDate endDate){
