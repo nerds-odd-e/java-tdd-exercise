@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static java.time.temporal.ChronoUnit.DAYS;
@@ -35,7 +34,6 @@ public class BudgetPlan {
             long totalInMiddle = 0;
             for (Budget budget : getBudgetsBetween(startDate, endDate)) {
                 totalInMiddle += budget.getAmount();
-                Logger.getLogger(this.getClass().getName()).info("Added " + budget.getMonth() + " to total for one period in between; current value is " + totalInMiddle);
             }
 
             long amountEndPeriod = getBudgetAmount(endDate);
