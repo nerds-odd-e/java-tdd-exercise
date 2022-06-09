@@ -1,5 +1,6 @@
 package com.odde.tdd;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 
 public class Budget {
@@ -9,5 +10,13 @@ public class Budget {
     public Budget(YearMonth month, long amount) {
         this.month = month;
         this.amount = amount;
+    }
+
+    public YearMonth getMonth() {
+        return month;
+    }
+
+    public long getAmount() {
+        return amount;
     }
 }
